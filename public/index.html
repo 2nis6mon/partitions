@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Partitions">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.png">
+  <title>Partitions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="toolbar">
+    <button id="btnLibrary" class="icon" title="Bibliothèque" aria-label="Bibliothèque">☰</button>
+    <div class="title" id="scoreTitle">Aucune partition</div>
+
+    <div class="group transport">
+      <button id="btnStop" class="icon" title="Revenir au début" aria-label="Revenir au début" disabled>⏮</button>
+      <button id="btnPlay" class="play" title="Lecture" aria-label="Lecture" disabled>▶</button>
+    </div>
+
+    <div class="group tempo">
+      <button id="btnSlower" class="icon small" aria-label="Plus lent">−</button>
+      <label class="bpm"><input id="bpm" type="number" min="20" max="240" value="80" inputmode="numeric"><span>BPM</span></label>
+      <button id="btnFaster" class="icon small" aria-label="Plus rapide">+</button>
+    </div>
+
+    <div class="group options">
+      <button id="btnCountIn" class="toggle on" title="Décompte d'une mesure avant de commencer">Décompte</button>
+      <button id="btnSound" class="toggle on" title="Son du métronome">🔊</button>
+      <button id="btnZoomOut" class="icon small" aria-label="Dézoomer">A−</button>
+      <button id="btnZoomIn" class="icon small" aria-label="Zoomer">A+</button>
+    </div>
+  </header>
+
+  <main id="scroller">
+    <div id="empty" class="empty">
+      <p>Ouvrez la bibliothèque <strong>☰</strong> pour importer une partition PDF ou MusicXML.</p>
+      <p class="hint">Touchez une note pour démarrer à cet endroit.</p>
+    </div>
+    <div id="score"></div>
+  </main>
+
+  <div id="beat" class="beat" aria-hidden="true"></div>
+  <div id="countIn" class="count-in" hidden></div>
+
+  <aside id="library" class="library" hidden>
+    <div class="library-panel">
+      <div class="library-head">
+        <h2>Bibliothèque</h2>
+        <button id="btnCloseLibrary" class="icon" aria-label="Fermer">✕</button>
+      </div>
+      <label class="upload">
+        <input id="fileInput" type="file">
+        <span>＋ Importer un PDF ou MusicXML</span>
+      </label>
+      <p id="audiverisWarning" class="warning" hidden>Audiveris n'est pas installé sur le Mac : seuls les fichiers MusicXML (.mxl, .musicxml) peuvent être importés.</p>
+      <div id="uploadStatus" class="status" hidden></div>
+      <ul id="scoreList"></ul>
+    </div>
+  </aside>
+
+  <script src="lib/opensheetmusicdisplay.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
